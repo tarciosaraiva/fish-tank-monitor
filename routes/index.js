@@ -1,4 +1,18 @@
+var reader = require('../reader');
+
 /* GET home page. */
-exports.index = function(req, res){
-  res.render('index', { title: 'Express' });
+exports.index = function(req, res) {
+  var templateParams = {
+    title: 'Fish tank monitor'
+  };
+
+  reader({
+    file: '/Users/tarcio/content', // '/sys/bus/w1/devices/28-00000400a88a/w1_slave',
+    callback: function(data) {
+      templateParams.time = data.time;
+      templateParams.temp = data.temp;
+      res.render('index', templateParams);
+    }
+  });
+
 };
