@@ -28,6 +28,6 @@ Here's an example file you can use:
 
 The Future
 ----------
-My goal is to incorporate pH, Ammonia and Nitrite sensors which are developed by (Atlas Scientific)[https://www.atlas-scientific.com]. They are currently working on the later two but the [pH sensor](https://www.atlas-scientific.com/product_pages/kits/ph-kit.html) is already available.
+My goal is to incorporate pH, Ammonia and Nitrite sensors which are developed by [Atlas Scientific](https://www.atlas-scientific.com). They are currently working on the later two but the [pH sensor](https://www.atlas-scientific.com/product_pages/kits/ph-kit.html) is already available.
 
 If you feel like you want to collaborate, please feel free to fork it!
