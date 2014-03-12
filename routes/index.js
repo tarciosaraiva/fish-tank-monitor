@@ -8,7 +8,7 @@ exports.index = function(req, res) {
   };
 
   reader({
-    file: '/Users/tarcio/content', // '/sys/bus/w1/devices/28-00000400a88a/w1_slave',
+    file: '/tmp/content', // '/sys/bus/w1/devices/28-00000400a88a/w1_slave',
     callback: function(data) {
       templateParams.time = moment(data.time).format('ddd @ h:mm:ss A');
       templateParams.temp = data.temp;
