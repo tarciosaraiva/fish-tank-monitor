@@ -3,6 +3,7 @@ var mongo = require('mongoskin');
 var logger = require('morgan');
 var reader = require('./reader');
 var nconf = require('nconf');
+var every = require('schedule').every;
 
 // configure nconf
 nconf.argv().env();
@@ -35,9 +36,11 @@ module.exports = function app() {
                 callback: dataReadCallback
             };
 
-            console.log('reading temperature from sensor...');
+            every(nconf.get('poll')).do(function() {
+                console.log('reading temperature from sensor...');
+                reader(readerData).read();
+            }, 5000);
 
-            reader(readerData).read();
         }
     };
 };

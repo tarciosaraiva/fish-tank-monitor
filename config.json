@@ -1,4 +1,5 @@
 {
+  "poll": "5s",
   "monitors": {
     "temperature": "/tmp/content",
     "ph": "",

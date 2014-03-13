@@ -15,7 +15,12 @@ Once you have `node.js` installed, execute the following:
     git clone https://github.com/tarciosaraiva/fish-tank-monitor.git
     cd fish-tank-monitor
     npm install
-Then you're good to go. To run simply execute `npm start` and the app will be up and running on port 3000.
+
+But before you run, you might want to update the `config.json` file with your own preferences. By default we poll for file changes every 5 seconds and the file to read is available at `/tmp/content`. **You should replace this with your own file and possibly your own polling preference.**
+
+The polling is based on the [schedule](https://www.npmjs.org/package/schedule) package available from `npm`. It's very easy to use: just specify a number followed by either ms, s, m, h or d.
+
+Then you're good to go. To run simply execute `npm start` and the app will be running, polling for file changes at your specified schedule.
 
 File to read
 ------------
