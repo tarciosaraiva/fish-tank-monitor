@@ -1,9 +1,9 @@
 #!/usr/bin/env node
+
+var every = require('schedule').every;
 var debug = require('debug')('fish-tank-monitor');
 var app = require('../app');
 
-app.set('port', process.env.PORT || 3000);
-
-var server = app.listen(app.get('port'), function() {
-  debug('Express server listening on port ' + server.address().port);
-});
+every('5s').do(function() {
+  app().process();
+}, 5000);

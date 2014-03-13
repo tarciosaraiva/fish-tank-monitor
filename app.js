@@ -1,59 +1,43 @@
-var express = require('express');
-var http = require('http');
-var path = require('path');
-var favicon = require('static-favicon');
+// Database
+var mongo = require('mongoskin');
 var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
+var reader = require('./reader');
+var nconf = require('nconf');
 
-// routes go here
-var routes = require('./routes');
+// configure nconf
+nconf.argv().env();
+nconf.file('config.json');
 
-var app = express();
-
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
-
-app.use(favicon());
-app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded());
-app.use(cookieParser());
-app.use(require('less-middleware')({ src: path.join(__dirname, 'public') }));
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(app.router);
-
-app.get('/', routes.index);
-
-/// catch 404 and forwarding to error handler
-app.use(function(req, res, next) {
-    var err = new Error('Not Found');
-    err.status = 404;
-    next(err);
+// configure mongo
+var db = mongo.db(nconf.get('db:url'), {
+    native_parser: true
 });
 
-/// error handlers
+module.exports = function app() {
 
-// development error handler
-// will print stacktrace
-if (app.get('env') === 'development') {
-    app.use(function(err, req, res, next) {
-        res.render('error', {
-            message: err.message,
-            error: err
-        });
-    });
-}
+    return {
+        process: function() {
+            var temperatureMonitorFile = nconf.get('monitors:temperature'),
+                dbData = {};
 
-// production error handler
-// no stacktraces leaked to user
-app.use(function(err, req, res, next) {
-    res.render('error', {
-        message: err.message,
-        error: {}
-    });
-});
+            function dataReadCallback(data) {
+                db.collection('temperature').insert(data, function(err, result) {
+                    if (err !== null) {
+                        console.log({
+                            msg: err
+                        });
+                    }
+                });
+            };
 
+            var readerData = {
+                file: temperatureMonitorFile,
+                callback: dataReadCallback
+            };
 
-module.exports = app;
+            console.log('reading temperature from sensor...');
+
+            reader(readerData).read();
+        }
+    };
+};
