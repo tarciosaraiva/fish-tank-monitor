@@ -2,6 +2,7 @@
   "poll": "5s",
   "log": {
     "file": "./logs/tank-monitor.log",
+    "exceptions": "./logs/exceptions.log",
     "level": "debug"
   },
   "monitors": {

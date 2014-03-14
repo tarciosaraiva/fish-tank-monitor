@@ -6,9 +6,14 @@ module.exports = new(winston.Logger)({
   transports: [
     new(winston.transports.File)({
       filename: config.get('log:file'),
-      handleExceptions: true,
+      handleExceptions: false,
       json: true,
       level: config.get('log:level')
+    }),
+    new(winston.transports.File)({
+      filename: config.get('log:exceptions'),
+      handleExceptions: true,
+      json: true
     })
   ]
 });
