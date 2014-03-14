@@ -24,14 +24,9 @@ module.exports = function app() {
                 });
             };
 
-            var readerData = {
-                file: temperatureMonitorFile,
-                callback: dataReadCallback
-            };
-
             every(config.get('poll')).do(function() {
                 logger.info('Polling file...');
-                reader.read(readerData);
+                reader.read(temperatureMonitorFile, dataReadCallback);
             }, 5000);
 
         }
