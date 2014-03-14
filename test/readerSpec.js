@@ -39,7 +39,7 @@ describe('reader', function() {
       reader.read('./test/fixtures/valid_content', function(msg) {
         expect(msg).to.have.property('read', 'YES');
         expect(msg).to.have.property('time');
-        expect(msg).to.have.property('temp', 23.9);
+        expect(msg).to.have.property('temp', 23.875);
       });
     });
 
