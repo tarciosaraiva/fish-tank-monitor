@@ -14,7 +14,7 @@
   "private": true,
   "scripts": {
     "start": "DEBUG=fish-tank-monitor node ./bin/www",
-    "test": "mocha"
+    "test": "mocha -R spec"
   },
   "keywords": [
     "RaspberryPi",

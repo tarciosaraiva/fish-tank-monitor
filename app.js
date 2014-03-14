@@ -31,7 +31,7 @@ module.exports = function app() {
 
             every(config.get('poll')).do(function() {
                 logger.info('Polling file...');
-                reader(readerData).read();
+                reader.read(readerData);
             }, 5000);
 
         }
