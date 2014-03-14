@@ -24,8 +24,6 @@ Then you're good to go. To run simply execute `npm start` and the app will be ru
 
 File to read
 ------------
-In order to read the file, all you have to do is edit `./routes/index.js` and change the property `file` on line 11 to point to whatever file it is that your Pi is generating - usually under `/sys/bus/w1/devices/28-xxxxxx/w1_slave`.
-
 Here's an example file you can use:
 
     7e 01 4b 46 7f ff 02 10 25 : crc=25 YES
