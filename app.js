@@ -13,13 +13,13 @@ module.exports = function app() {
 
     return {
         process: function() {
-            var temperatureMonitorFile = config.get('monitors:temperature'),
+            var temperatureMonitorFile = config.get('monitors:temperature:file'),
                 dbData = {};
 
             function dataReadCallback(data) {
                 db.collection('temperature').insert(data, function(err, result) {
                     if (err !== null) {
-                        logger.error('Could not insert temperature data: %s', err);
+                        logger.error('Could not insert temperature data: %s', err.message);
                     }
                 });
             };
