@@ -4,7 +4,11 @@ A fish tank monitor using Raspberry Pi and (possibly, in the future) many sensor
 
 It's a fairly straight forward setup in the Pi and even simpler here on the app. For all details on how to setup the Pi please [visit my blog](http://tarciosaraiva.wordpress.com/category/personal-projects/fish-tank-monitor-personal-projects/) as I have everything documented there.
 
-I leverage some work from [this repo](https://github.com/talltom/PiThermServer) created by [Tomas Holderness](https://github.com/talltom) and applied my own modifications as my ultimate goal is to setup a self-contained webapp generating graphs and maybe manipulating some water parameters.
+I leverage some work from [this repo](https://github.com/talltom/PiThermServer) created by [Tomas Holderness](https://github.com/talltom) and applied my own modifications.
+
+Contributing
+------------
+You can contribute with your own ideas using our [open Trello board](https://trello.com/b/YvK3La8t) or simply clone this repo and submit pull requests.
 
 How to get going
 ----------------
@@ -32,5 +36,3 @@ Here's an example file you can use:
 The Future
 ----------
 My goal is to incorporate pH, Ammonia and Nitrite sensors which are developed by [Atlas Scientific](https://www.atlas-scientific.com). They are currently working on the later two but the [pH sensor](https://www.atlas-scientific.com/product_pages/kits/ph-kit.html) is already available.
-
-If you feel like you want to collaborate, please feel free to fork it!
