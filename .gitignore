@@ -9,7 +9,6 @@ lib-cov
 *.css
 
 pids
-logs
 results
 
 npm-debug.log

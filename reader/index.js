@@ -1,5 +1,5 @@
 var fs = require('fs');
-var sys = require('sys');
+var logger = require('../utils/logger');
 
 /**
  * Read current temperature from DS18B20.
@@ -17,8 +17,10 @@ module.exports = function reader(opts) {
         if (exists) {
           fs.readFile(opts.file, function(err, buffer) {
             if (err) {
-              console.error(err);
+              logger.error('Error: %s', err);
             }
+
+            logger.debug('Raw data captured: %s', data);
 
             // Read data from file (using fast node ASCII encoding).
             var data = buffer.toString('ascii').split(" "); // Split by space
@@ -34,6 +36,8 @@ module.exports = function reader(opts) {
               temp: temp
             };
 
+            logger.info('Data to be recorded into database: %s', data);
+
             // Execute call back with data
             opts.callback(data);
           });
@@ -41,5 +45,4 @@ module.exports = function reader(opts) {
       });
     }
   };
-
 };

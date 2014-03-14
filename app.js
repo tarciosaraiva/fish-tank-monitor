@@ -1,16 +1,11 @@
-// Database
 var mongo = require('mongoskin');
-var logger = require('morgan');
 var reader = require('./reader');
-var nconf = require('nconf');
+var config = require('./utils/config');
+var logger = require('./utils/logger');
 var every = require('schedule').every;
 
-// configure nconf
-nconf.argv().env();
-nconf.file('config.json');
-
 // configure mongo
-var db = mongo.db(nconf.get('db:url'), {
+var db = mongo.db(config.get('db:url'), {
     native_parser: true
 });
 
@@ -18,15 +13,13 @@ module.exports = function app() {
 
     return {
         process: function() {
-            var temperatureMonitorFile = nconf.get('monitors:temperature'),
+            var temperatureMonitorFile = config.get('monitors:temperature'),
                 dbData = {};
 
             function dataReadCallback(data) {
                 db.collection('temperature').insert(data, function(err, result) {
                     if (err !== null) {
-                        console.log({
-                            msg: err
-                        });
+                        logger.error('Could not insert temperature data: %s', err);
                     }
                 });
             };
@@ -36,8 +29,8 @@ module.exports = function app() {
                 callback: dataReadCallback
             };
 
-            every(nconf.get('poll')).do(function() {
-                console.log('reading temperature from sensor...');
+            every(config.get('poll')).do(function() {
+                logger.info('Polling file...');
                 reader(readerData).read();
             }, 5000);
 

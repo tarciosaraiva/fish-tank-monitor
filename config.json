@@ -1,5 +1,9 @@
 {
   "poll": "5s",
+  "log": {
+    "file": "./logs/tank-monitor.log",
+    "level": "debug"
+  },
   "monitors": {
     "temperature": "/tmp/content",
     "ph": "",
