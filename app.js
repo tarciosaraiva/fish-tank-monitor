@@ -1,7 +1,7 @@
 var mongo = require('mongoskin');
-var reader = require('./reader');
-var config = require('./utils/config');
-var logger = require('./utils/logger');
+var reader = require('./lib/reader');
+var config = require('./lib/config');
+var logger = require('./lib/logger');
 var every = require('schedule').every;
 
 // configure mongo
