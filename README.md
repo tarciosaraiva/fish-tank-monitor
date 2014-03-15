@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/tarciosaraiva/fish-tank-monitor.png?branch=master)](https://travis-ci.org/tarciosaraiva/fish-tank-monitor)
+
 Fish Tank Monitor
 =================
 A fish tank monitor using Raspberry Pi and (possibly, in the future) many sensors. Currently I'm only support the DS18B20 temperature sensor.
