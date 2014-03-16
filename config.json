@@ -1,5 +1,5 @@
 {
-  "poll": "5s",
+  "poll": "60s",
   "log": {
     "file": "./logs/tank-monitor.log",
     "level": "debug"
