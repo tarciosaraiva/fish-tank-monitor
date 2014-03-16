@@ -10,11 +10,18 @@ var db = mongo.db(config.get('db:url'), {
 });
 
 var ENV_FILE = 'TMP_FILE';
+var ENV_POLL = 'TMP_POLL';
 var CFG_FILE = 'monitors:temperature:file';
+var CFG_POLL = 'poll';
 
 exports = module.exports = {};
 
 exports.process = function() {
+    var monitorFile = config.get(ENV_FILE) || config.get(CFG_FILE)
+    var polling = config.get(ENV_POLL) || config.get(CFG_POLL)
+
+    logger.info('Polling file `%s` every `%s`', monitorFile, polling);
+
     function dataReadCallback(data) {
         if (typeof data === 'Error') {
             logger.error('Error: %s', data.message);
@@ -28,10 +35,7 @@ exports.process = function() {
         });
     };
 
-    var monitorFile = config.get(ENV_FILE) || config.get(CFG_FILE)
-
-    every(config.get('poll')).do(function() {
-        logger.info('Polling file: %s', monitorFile);
+    every(polling).do(function() {
         reader.read(monitorFile, dataReadCallback);
     }, 5000);
 
