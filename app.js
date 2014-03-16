@@ -16,6 +16,10 @@ exports = module.exports = {};
 
 exports.process = function() {
     function dataReadCallback(data) {
+        if (typeof data === 'Error') {
+            logger.error('Error: %s', data.message);
+            process.exit(1);
+        }
         logger.info('About to insert data: %s', data);
         db.collection('temperature').insert(data, function(err, result) {
             if (err !== null) {
