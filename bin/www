@@ -3,4 +3,4 @@
 var debug = require('debug')('fish-tank-monitor');
 var app = require('../app');
 
-app().process();
+app.process();

@@ -9,26 +9,25 @@ var db = mongo.db(config.get('db:url'), {
     native_parser: true
 });
 
-module.exports = function app() {
+var ENV_FILE = 'TMP_FILE';
+var CFG_FILE = 'monitors:temperature:file';
 
-    return {
-        process: function() {
-            var temperatureMonitorFile = config.get('monitors:temperature:file'),
-                dbData = {};
+exports = module.exports = {
+    monitorFile: config.get(ENV_FILE) || config.get(CFG_FILE)
+};
 
-            function dataReadCallback(data) {
-                db.collection('temperature').insert(data, function(err, result) {
-                    if (err !== null) {
-                        logger.error('Could not insert temperature data: %s', err.message);
-                    }
-                });
-            };
-
-            every(config.get('poll')).do(function() {
-                logger.info('Polling file...');
-                reader.read(temperatureMonitorFile, dataReadCallback);
-            }, 5000);
-
-        }
+exports.process = function() {
+    function dataReadCallback(data) {
+        db.collection('temperature').insert(data, function(err, result) {
+            if (err !== null) {
+                logger.error('Could not insert temperature data: %s', err.message);
+            }
+        });
     };
+
+    every(config.get('poll')).do(function() {
+        logger.info('Polling file...');
+        reader.read(this.monitorFile, dataReadCallback);
+    }, 5000);
+
 };
