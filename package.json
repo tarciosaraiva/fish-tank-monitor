@@ -13,7 +13,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "start": "DEBUG=fish-tank-monitor node ./bin/www",
+    "start": "node ./bin/www",
     "test": "mocha -R spec"
   },
   "keywords": [
