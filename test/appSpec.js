@@ -43,7 +43,7 @@ describe('app', function() {
 
       app.process();
 
-      clock.tick(30000);
+      clock.tick(32000);
       clock.tick(70000);
     });
 
