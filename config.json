@@ -2,7 +2,8 @@
   "poll": "60s",
   "log": {
     "file": "./logs/tank-monitor.log",
-    "level": "debug"
+    "exception": "./logs/stacktrace.log",
+    "level": "info"
   },
   "monitors": {
     "temperature": "/tmp/content",
