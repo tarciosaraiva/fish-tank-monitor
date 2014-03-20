@@ -20,6 +20,7 @@ exports.monitorFile = config.get(ENV_FILE) || config.get(CFG_FILE);
 exports.polling = config.get(ENV_POLL) || config.get(CFG_POLL);
 
 exports.process = function() {
+  var self = this;
   logger.info('Polling file `%s` every `%s`', this.monitorFile, this.polling);
 
   function dataReadCallback(data) {
@@ -36,7 +37,7 @@ exports.process = function() {
   };
 
   every(this.polling).do(function() {
-    reader.read(this.monitorFile, dataReadCallback);
+    reader.read(self.monitorFile, dataReadCallback);
   });
 
 };
