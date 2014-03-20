@@ -30,7 +30,8 @@
     "winston": "~0.7.x",
     "debug": "~0.7.x",
     "schedule": "~0.1.x",
-    "nconf": "~0.6.x"
+    "nconf": "~0.6.x",
+    "moment": "^2.5.1"
   },
   "devDependencies": {
     "mocha": "~1.18.x",
