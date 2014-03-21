@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/tarciosaraiva/fish-tank-monitor.png?branch=master)](https://travis-ci.org/tarciosaraiva/fish-tank-monitor)
+[![Code Climate](https://codeclimate.com/github/tarciosaraiva/fish-tank-monitor.png)](https://codeclimate.com/github/tarciosaraiva/fish-tank-monitor)
 
 Fish Tank Monitor
 =================
