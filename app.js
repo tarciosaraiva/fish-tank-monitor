@@ -29,12 +29,12 @@ exports.process = function() {
       process.exit(1);
     }
 
-    db.collection('temperature').insert(data, function(err, result) {
+    db.collection('temperature').insert(data, function(err) {
       if (err !== null) {
         logger.error('Could not insert temperature data: %s', err.message);
       }
     });
-  };
+  }
 
   every(this.polling).do(function() {
     reader.read(self.monitorFile, dataReadCallback);
